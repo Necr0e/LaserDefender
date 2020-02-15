@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: -6957879238305879089}
   m_Layer: 9
   m_Name: Enemy Attacker
-  m_TagString: Untagged
+  m_TagString: Laser Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,9 +145,11 @@ MonoBehaviour:
     type: 3}
   enemyFireSfx: {fileID: 8300000, guid: b46d9e3bb6c71f841b91b70f934b50a9, type: 3}
   enemyDeathSfx: {fileID: 8300000, guid: 3e1cb12fdbdd401448c8be10a9c4a2aa, type: 3}
+  projectileTag: Enemy Laser
   enemyDeathSfxVolume: 0.75
   enemyProjectileSfxVolume: 0.5
   health: 100
+  scoreValue: 150
   projectileVelocity: 5
   minTimeBetweenShots: 0.2
   maxTimeBetweenShots: 2

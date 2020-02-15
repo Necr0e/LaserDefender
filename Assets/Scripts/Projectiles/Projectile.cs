@@ -1,12 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Projectile : MonoBehaviour
+namespace Projectiles
 {
-    [SerializeField] private float projectileLifetime = 3f;
-    private void Start()
+    public class Projectile : MonoBehaviour
     {
-        Destroy(this.gameObject, projectileLifetime);
+        [SerializeField] private float projectileLifetime = 3f;
+
+        private void OnEnable()
+        {
+            Invoke("DisableProjectile", projectileLifetime);
+        }
+        private void DisableProjectile()
+        {
+            gameObject.SetActive(false);
+        }
+        private void OnDisable()
+        {
+            CancelInvoke();
+        }
     }
 }

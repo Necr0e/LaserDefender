@@ -1,41 +1,44 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPathing : MonoBehaviour
+namespace Enemy
 {
-    private WaveConfig waveConfig;
-    private List<Transform> enemyWaypoints;
-    private int waypointIndex = 0;
-    private void Start()
+    public class EnemyPathing : MonoBehaviour
     {
-        enemyWaypoints = waveConfig.GetWaypoints();
-        transform.position = enemyWaypoints[waypointIndex].position;
-    }
-
-    private void Update()
-    { 
-        MoveToWaypoint();
-    }
-
-    public void SetWaveConfig(WaveConfig waveConfig)
-    {
-        this.waveConfig = waveConfig;
-    }
-    private void MoveToWaypoint()
-    {
-        if (waypointIndex <= enemyWaypoints.Count - 1)
+        private WaveConfig waveConfig;
+        private List<Transform> enemyWaypoints;
+        private int waypointIndex = 0;
+        private void Start()
         {
-            Vector2 targetPosition = enemyWaypoints[waypointIndex].transform.position;
-            float movementThisFrame = waveConfig.GetMoveSpeed() * Time.deltaTime;
-            transform.position = Vector2.MoveTowards(transform.position, targetPosition, movementThisFrame);
-            if (transform.position.Equals(targetPosition))
-            {
-                waypointIndex++;
-            }
+            enemyWaypoints = waveConfig.GetWaypoints();
+            transform.position = enemyWaypoints[waypointIndex].position;
         }
-        else
+
+        private void Update()
+        { 
+            MoveToWaypoint();
+        }
+
+        public void SetWaveConfig(WaveConfig waveConfig)
         {
-            Destroy(gameObject);
+            this.waveConfig = waveConfig;
+        }
+        private void MoveToWaypoint()
+        {
+            if (waypointIndex <= enemyWaypoints.Count - 1)
+            {
+                Vector2 targetPosition = enemyWaypoints[waypointIndex].transform.position;
+                float movementThisFrame = waveConfig.GetMoveSpeed() * Time.deltaTime;
+                transform.position = Vector2.MoveTowards(transform.position, targetPosition, movementThisFrame);
+                if (transform.position.Equals(targetPosition))
+                {
+                    waypointIndex++;
+                }
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
